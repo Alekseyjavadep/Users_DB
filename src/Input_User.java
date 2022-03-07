@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Input_User {
+    DB db = new DB();
     void check_login(String login){
         Pattern pattern= Pattern.compile(("^[A-Za-z]([.A-Za-z0-9-]{1,18})([A-Za-z0-9])$"));
         Matcher matcher = pattern.matcher(login);
@@ -32,6 +33,18 @@ public class Input_User {
         check_password(password_new);
     }
 
+    void start(int input){
+        switch (input){
+            case 1:
+                System.out.println("Вход по имени");
+                break;
+            case 2: db.reg_user();
+                System.out.println("Регистрация успешно выполнена");
+                break;
+            default:
+                System.out.println("Введена не корректно цифра");
+        }
+    }
 
 
 }

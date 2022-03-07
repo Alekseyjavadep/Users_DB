@@ -30,9 +30,13 @@ public class DB {
     void check_input_user(){
         boolean while_true = true;
         while (while_true) {
-            System.out.println("Введите ваше имя");
-            String input_user = sc.nextLine();
-            String sql_check = "SELECT * FROM users where name = '" + input_user + "'";
+
+            System.out.println("Введите Ваш логин");
+            String input_user_login = sc.nextLine();
+
+            System.out.println("Введите Ваш пароль");
+            String input_user_password = sc.nextLine();
+            String sql_check = "SELECT * FROM users where login = '" + input_user_login + "' AND password = '"+input_user_password+"'";
             try {
                 statement = getConnection().createStatement();
                 ResultSet rs = statement.executeQuery(sql_check);
@@ -42,7 +46,7 @@ public class DB {
                     counter++;
                 }
                 if (counter >= 1) {
-                    System.out.println("Добро пожаловать" + " " + input_user);
+                    System.out.println("Добро пожаловать" + " " + input_user_login);
                     while_true = false;
                     break;
                 } else
@@ -66,6 +70,8 @@ public class DB {
             check_input_user.check_login(input_user_login);
 
             System.out.println("Введите пароль");
+            System.out.println("Пароль должен соотвествовать следующим критериям:");
+            System.out.println("Длинна не меньше 6 символов, заглавные и пропиcные буквы, цифру, специальный символ");
             String input_user_password = sc.nextLine();
             check_input_user.check_password(input_user_password);
 
